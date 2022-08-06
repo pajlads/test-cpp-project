@@ -45,6 +45,7 @@ jobs:
         uses: pajlada/clang-tidy-review@feat/split-up-review-and-post-workflows
         if: github.event_name == 'pull_request'
         with:
+          include: src/main.cpp
           build_dir: build
           config_file: '.clang-tidy'
           post_comments: false
