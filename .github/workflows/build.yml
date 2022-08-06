@@ -47,3 +47,9 @@ jobs:
         with:
           build_dir: build
           config_file: '.clang-tidy'
+          post_comments: false
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: clang-tidy-review
+          path: clang_tidy_review.yaml
