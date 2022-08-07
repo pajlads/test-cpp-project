@@ -1,3 +1,4 @@
+---
 name: Post clang-tidy review comments
 
 on:
@@ -21,7 +22,7 @@ jobs:
               run_id: ${{github.event.workflow_run.id }},
             });
             const matchArtifact = artifacts.data.artifacts.filter((artifact) => {
-              return artifact.name == "clang-tidy-review"
+              return artifact.name == "clang-tidy-review-output"
             })[0];
             const download = await github.rest.actions.downloadArtifact({
               owner: context.repo.owner,
@@ -30,9 +31,9 @@ jobs:
               archive_format: 'zip',
             });
             const fs = require('fs');
-            fs.writeFileSync('${{github.workspace}}/clang-tidy-review.zip', Buffer.from(download.data));
+            fs.writeFileSync('${{github.workspace}}/clang-tidy-review-output.zip', Buffer.from(download.data));
       - name: 'Unzip artifact'
-        run: unzip clang-tidy-review.zip
+        run: unzip clang-tidy-review-output.zip
 
 
       - uses: pajlada/clang-tidy-review/post_comments@feat/split-up-review-and-post-workflows

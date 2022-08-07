@@ -52,5 +52,5 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: clang-tidy-review
-          path: clang_tidy_review.yaml
+          name: clang-tidy-review-output
+          path: clang-tidy-review-output.json
