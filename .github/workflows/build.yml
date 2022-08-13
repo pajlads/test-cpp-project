@@ -48,11 +48,3 @@ jobs:
           include: src/main.cpp
           build_dir: build
           config_file: '.clang-tidy'
-          post_comments: false
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: clang-tidy-review
-          path: |
-            clang-tidy-review-output.json
-            clang-tidy-review-metadata.json
