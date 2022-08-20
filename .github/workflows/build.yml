@@ -38,12 +38,13 @@ jobs:
             cmake \
               -DCMAKE_EXPORT_COMPILE_COMMANDS=On \
               ..
-            make -j$(nproc)
+            make "-j$(nproc)"
         shell: bash
 
       - name: clang-tidy review
         uses: pajlada/clang-tidy-review@feat/split-up-review-and-post-workflows
         if: github.event_name == 'pull_request'
+        id: review
         with:
           include: src/main.cpp
           build_dir: build
@@ -56,3 +57,9 @@ jobs:
           path: |
             clang-tidy-review-output.json
             clang-tidy-review-metadata.json
+
+      - name: Get total comments
+        run: |
+          echo "Total comments: ${total_comments}"
+        env:
+          total_comments: ${{ steps.review.outputs.total_comments }}

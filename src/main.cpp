@@ -1,5 +1,9 @@
 #include <iostream>
 
+void myFunction()
+{
+}
+
 int main(int argc, char **argv)
 {
     auto test = new std::string;  // :)

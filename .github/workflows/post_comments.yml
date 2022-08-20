@@ -36,3 +36,10 @@ jobs:
         run: unzip clang-tidy-review.zip
 
       - uses: pajlada/clang-tidy-review/post_comments@feat/split-up-review-and-post-workflows
+        id: review
+
+      - name: Get total comments
+        run: |
+          echo "Total comments: ${total_comments}"
+        env:
+          total_comments: ${{ steps.review.outputs.total_comments }}
